@@ -217,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatbotToggle = document.getElementById('chatbot-toggle');
     const chatbotWindow = document.querySelector('.chatbot-window');
     const chatbotClose = document.getElementById('chatbot-close');
+    const chatbotOverlay = document.getElementById('chatbot-overlay');
     const chatInput = document.getElementById('chat-input');
     const chatSubmit = document.getElementById('chat-submit');
     const chatMessages = document.getElementById('chat-messages');
@@ -230,6 +231,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     chatbotClose.addEventListener('click', () => {
+        chatbotWindow.classList.remove('open');
+    });
+
+    chatbotOverlay.addEventListener('click', () => {
         chatbotWindow.classList.remove('open');
     });
 
@@ -283,7 +288,7 @@ ${resumeData}`;
         genAI = new GoogleGenerativeAI(API_KEY);
         // Initialize the model
         generativeModel = genAI.getGenerativeModel({ 
-            model: "gemini-flash-latest"
+            model: "gemini-1.5-flash"
         });
     } catch (error) {
         console.error("Failed to initialize Google Generative AI:", error);
@@ -346,7 +351,18 @@ ${resumeData}`;
 
     function addTypingIndicator() {
         const id = 'typing-' + Date.now();
-        addMessage("Thinking...", 'bot', id);
+        const msgDiv = document.createElement('div');
+        msgDiv.className = 'message bot-message';
+        msgDiv.id = id;
+        msgDiv.innerHTML = `
+            <div class="typing-indicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        `;
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
         return id;
     }
 
