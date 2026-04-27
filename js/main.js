@@ -294,6 +294,29 @@ ${resumeData}`;
         console.error("Failed to initialize Google Generative AI:", error);
     }
 
+    // Simple local fallback AI logic
+    function generateFallbackResponse(query) {
+        query = query.toLowerCase();
+        
+        if (query.includes('hello') || query.includes('hi ') || query === 'hi') {
+            return "Hello! I'm Harshit's AI assistant. Ask me about his experience, skills, or projects!";
+        } else if (query.includes('experience') || query.includes('work') || query.includes('job')) {
+            return "Harshit is currently a Software Engineer L3 at Connecting Points Tech. Previously, he interned at Concientech IT Solution and GAOTek Inc. as a Web/Software Developer.";
+        } else if (query.includes('skill') || query.includes('tech') || query.includes('stack')) {
+            return "Harshit specializes in Backend & AI. His skills include Python, SQL, FastAPI, Django, LLMs, LangChain, Apache Kafka, Docker, and Kubernetes.";
+        } else if (query.includes('project') || query.includes('portfolio')) {
+            return "Some of his notable projects include TemporalAI (Event-Driven Microservices), an AI Interviewer Platform, and a Cash Management System (REATIV).";
+        } else if (query.includes('education') || query.includes('degree') || query.includes('college')) {
+            return "Harshit holds an MCA from Graphic Era Hill University (2023-2025) and a B.Sc from VBS Purvanchal University (2020-2023).";
+        } else if (query.includes('contact') || query.includes('email') || query.includes('phone') || query.includes('hire')) {
+            return "You can reach Harshit via email at harshitshukla1124@gmail.com or by phone at +91 9670534311. His LinkedIn is harshit-shukla01.";
+        } else if (query.includes('who is') || query.includes('about')) {
+            return "Harshit Shukla is a Backend Engineer and AI Developer based in Chandigarh, India, skilled in building scalable distributed systems and GenAI applications.";
+        } else {
+            return "I'm not sure about that. But you can reach out to Harshit directly via email at harshitshukla1124@gmail.com for more details!";
+        }
+    }
+
     async function handleChatSubmit() {
         const text = chatInput.value.trim();
         if (!text) return;
@@ -302,31 +325,31 @@ ${resumeData}`;
         addMessage(text, 'user');
         chatInput.value = '';
 
-        // Check if model initialized
-        if (!generativeModel) {
-            addMessage("Sorry, the AI is currently offline due to a configuration error.", 'bot');
-            return;
-        }
-
         // Show typing indicator
         const typingId = addTypingIndicator();
 
         try {
-            // Append system context to user prompt since gemini-pro might not support systemInstruction natively
-            const fullPrompt = `${systemPrompt}\n\nUser Question: ${text}`;
+            if (!generativeModel) {
+                throw new Error("Model not initialized");
+            }
             
             // Call Gemini API
+            const fullPrompt = `${systemPrompt}\n\nUser Question: ${text}`;
             const result = await generativeModel.generateContent(fullPrompt);
             const response = await result.response;
             const textResponse = response.text();
             
-            // Remove typing indicator and add response
             removeMessage(typingId);
             addMessage(textResponse, 'bot');
         } catch (error) {
-            console.error("Gemini API Error:", error);
-            removeMessage(typingId);
-            addMessage("Sorry, I encountered a technical issue while fetching the response. Please try again or reach out to Harshit directly!", 'bot');
+            console.error("Gemini API Error, using fallback:", error);
+            
+            // Use robust local fallback if API fails
+            setTimeout(() => {
+                const fallbackResponse = generateFallbackResponse(text);
+                removeMessage(typingId);
+                addMessage(fallbackResponse, 'bot');
+            }, 1000); // Add a small delay to simulate thinking
         }
     }
 
