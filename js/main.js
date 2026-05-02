@@ -161,6 +161,53 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // 5.5 Contact Form AJAX Submission (Prevents redirect to FormSubmit page)
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                submitBtn.textContent = 'Message Sent Successfully!';
+                submitBtn.style.background = '#10b981'; // Green success color
+                submitBtn.style.color = 'white';
+                contactForm.reset();
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.style.color = '';
+                    submitBtn.disabled = false;
+                }, 4000);
+            })
+            .catch(error => {
+                submitBtn.textContent = 'Error! Please try again.';
+                submitBtn.style.background = '#ef4444'; // Red error color
+                submitBtn.style.color = 'white';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.style.color = '';
+                    submitBtn.disabled = false;
+                }, 4000);
+            });
+        });
+    }
+
     // 6. Hero Canvas Animation (Nodes connecting)
     const canvas = document.getElementById('hero-canvas');
     if (canvas) {
