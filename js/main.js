@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealOnScroll.observe(reveal);
     });
 
-    // 5. Project Filtering
+    // 5. Project Filtering & Details Toggle
     const filterBtns = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
@@ -140,6 +140,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
+        });
+    });
+
+    // Project Details Toggle
+    const toggleDetailsBtns = document.querySelectorAll('.toggle-details-btn');
+    toggleDetailsBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const projectCard = e.target.closest('.project-card');
+            const detailsSection = projectCard.querySelector('.project-details');
+            if (detailsSection) {
+                if (detailsSection.style.display === 'none') {
+                    detailsSection.style.display = 'block';
+                    e.target.textContent = 'Hide Details';
+                } else {
+                    detailsSection.style.display = 'none';
+                    e.target.textContent = 'View Details';
+                }
+            }
         });
     });
 
@@ -267,19 +285,30 @@ Experience:
 - Web Developer Intern at GAOTek Inc. (July 2024 - Oct 2024): Built functional modules using React & WordPress.
 
 Projects:
-1. TemporalAI: Event-Driven Microservices Platform (React + FastAPI + Kafka + Firebase + Docker)
-2. AI Interviewer Platform: AI-powered mock interview system using NLP & LLM (Django + Angular)
-3. Cash Management System (REATIV): Banking system for liquidity monitoring (REST APIs + Firebase)
+1. TemporalAI (Featured):
+   - Type: Full-stack Event-Driven Microservices Platform.
+   - Tech Stack: React (Frontend), FastAPI (Gateway/Backend), Apache Kafka (Event Streaming), Firebase Firestore (NoSQL DB), Docker.
+   - Key Features: Intelligent AI chatbot, real-time anomaly reporting, automated snapshots.
+   - Architecture: Frontend sends events to FastAPI Gateway, which publishes to Kafka. AI Workers consume Kafka events, process data using LLMs, and save to Firebase. Frontend listens to Firebase for real-time updates.
+   - Challenges Solved: Handled high-throughput real-time event streaming by replacing traditional synchronous APIs with Kafka, preventing bottlenecking during AI processing. Reduced latency and decoupled services.
+2. AI Interviewer Platform:
+   - Tech Stack: Django, Angular, NLP, LLM.
+   - Details: AI-powered mock interview system. Features real-time question generation and sentiment analysis to evaluate candidates.
+3. Cash Management System (REATIV):
+   - Tech Stack: REST APIs, Firebase, Python.
+   - Details: Banking system for liquidity monitoring and reconciliation. Uses REST APIs for financial data aggregation and Firebase for real-time updates.
 
 Education:
 MCA - Graphic Era Hill University (2023-2025)
 B.Sc - VBS Purvanchal University (2020-2023)
 `;
 
-    const systemPrompt = `You are a helpful and professional AI assistant for Harshit Shukla's portfolio website. 
-Your goal is to answer questions about Harshit accurately and concisely using ONLY the following resume data. 
-If a user asks a question that cannot be answered using the resume data, politely tell them that you don't know the answer but they can contact Harshit directly via email at harshitshukla1124@gmail.com. 
-Keep your responses short, friendly, and conversational (1-3 sentences maximum). Do not use markdown formatting like bolding or bullet points unless necessary for a list.
+    const systemPrompt = `You are Harshit Shukla's intelligent portfolio assistant, a top-tier Backend & AI Engineer. 
+You represent Harshit's professional persona. Answer questions accurately and concisely using ONLY the provided resume data. 
+
+**Special Feature "Ask My Project":** If a user asks about a specific project (e.g., TemporalAI), provide a structured breakdown of its Tech Stack, Architecture, and Challenges Solved.
+Tone: Professional, highly technical, confident, yet friendly. (1-3 sentences for general queries; structured bullet points for project deep-dives).
+Do not hallucinate information. If you don't know the answer, politely provide Harshit's email (harshitshukla1124@gmail.com).
 
 Resume Data:
 ${resumeData}`;
@@ -299,13 +328,13 @@ ${resumeData}`;
         query = query.toLowerCase();
         
         if (query.includes('hello') || query.includes('hi ') || query === 'hi') {
-            return "Hello! I'm Harshit's AI assistant. Ask me about his experience, skills, or projects!";
+            return "Hello! I'm Harshit's AI assistant. Try the 'Ask My Project' feature to learn about his architecture, or ask about his experience and skills!";
         } else if (query.includes('experience') || query.includes('work') || query.includes('job')) {
             return "Harshit is currently a Software Engineer L3 at Connecting Points Tech. Previously, he interned at Concientech IT Solution and GAOTek Inc. as a Web/Software Developer.";
         } else if (query.includes('skill') || query.includes('tech') || query.includes('stack')) {
-            return "Harshit specializes in Backend & AI. His skills include Python, SQL, FastAPI, Django, LLMs, LangChain, Apache Kafka, Docker, and Kubernetes.";
-        } else if (query.includes('project') || query.includes('portfolio')) {
-            return "Some of his notable projects include TemporalAI (Event-Driven Microservices), an AI Interviewer Platform, and a Cash Management System (REATIV).";
+            return "Harshit specializes in Backend & AI. His core stack includes Python, FastAPI, Apache Kafka, Docker, and Generative AI (LLMs/RAG).";
+        } else if (query.includes('temporalai') || query.includes('temporal ai') || query.includes('project')) {
+            return "TemporalAI is his featured full-stack event-driven microservices platform.\n\nTech Stack: React, FastAPI, Kafka, Firebase, Docker.\nArchitecture: FastAPI Gateway publishes to Kafka, AI workers consume and process with LLMs, saving to Firebase for real-time frontend updates.\nChallenge Solved: Replaced synchronous APIs with Kafka for high-throughput, decoupled real-time streaming.";
         } else if (query.includes('education') || query.includes('degree') || query.includes('college')) {
             return "Harshit holds an MCA from Graphic Era Hill University (2023-2025) and a B.Sc from VBS Purvanchal University (2020-2023).";
         } else if (query.includes('contact') || query.includes('email') || query.includes('phone') || query.includes('hire')) {
@@ -317,8 +346,9 @@ ${resumeData}`;
         }
     }
 
-    async function handleChatSubmit() {
-        const text = chatInput.value.trim();
+    async function handleChatSubmit(directText = null) {
+        // Support both click events and direct function calls
+        const text = typeof directText === 'string' ? directText : chatInput.value.trim();
         if (!text) return;
 
         // Add user message
@@ -395,4 +425,112 @@ ${resumeData}`;
             handleChatSubmit();
         }
     });
+
+    // Chatbot Quick Actions
+    const quickActions = document.querySelectorAll('.quick-action-btn');
+    quickActions.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const query = btn.getAttribute('data-query');
+            handleChatSubmit(query);
+            // Hide quick actions after first use to clean up UI
+            const actionsContainer = document.getElementById('chat-quick-actions');
+            if (actionsContainer) actionsContainer.style.display = 'none';
+        });
+    });
+
+    // 8. Copy to Clipboard Logic
+    const copyEmailBtn = document.getElementById('copy-email-btn');
+    const copyPhoneBtn = document.getElementById('copy-phone-btn');
+    const emailText = document.getElementById('contact-email-text');
+    const phoneText = document.getElementById('contact-phone-text');
+
+    function copyText(btn, text) {
+        navigator.clipboard.writeText(text).then(() => {
+            const icon = btn.querySelector('i');
+            const originalClass = icon.className;
+            icon.className = 'ph ph-check';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                icon.className = originalClass;
+                btn.classList.remove('copied');
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    }
+
+    if (copyEmailBtn && emailText) {
+        copyEmailBtn.addEventListener('click', () => copyText(copyEmailBtn, emailText.textContent));
+    }
+    if (copyPhoneBtn && phoneText) {
+        copyPhoneBtn.addEventListener('click', () => copyText(copyPhoneBtn, phoneText.textContent));
+    }
+
+    // 9. System Simulator (Kafka Flow) Logic
+    const simStartBtn = document.getElementById('sim-start-btn');
+    const simStatus = document.getElementById('sim-status');
+    const simLogOutput = document.getElementById('sim-log-output');
+    
+    if (simStartBtn) {
+        function addLog(msg, type='info') {
+            const div = document.createElement('div');
+            const colorClass = type === 'warn' ? 'log-warn' : 'log-time';
+            div.innerHTML = `<span class="${colorClass}">[${new Date().toLocaleTimeString().split(' ')[0]}]</span> ${msg}`;
+            simLogOutput.appendChild(div);
+            simLogOutput.scrollTop = simLogOutput.scrollHeight;
+        }
+
+        simStartBtn.addEventListener('click', () => {
+            simStartBtn.disabled = true;
+            simStatus.textContent = 'Processing Event...';
+            simStatus.style.color = 'var(--accent)';
+            simLogOutput.innerHTML = '';
+            addLog('Frontend triggered new event payload.');
+
+            let step = 0;
+            const flowSteps = [
+                { node: 'client', nextArrow: 1, log: 'Client sending POST /api/v1/event...' },
+                { node: 'api', nextArrow: 2, log: 'FastAPI Gateway validating and serializing payload...' },
+                { node: 'kafka', nextArrow: 3, log: 'Kafka Broker acknowledged message in topic "events".' },
+                { node: 'worker', nextArrow: 4, log: 'AI Worker consumed message, processing via LLM...' },
+                { node: 'db', nextArrow: null, log: 'Firebase updated. Real-time listener notified frontend.' }
+            ];
+
+            function executeStep() {
+                if (step > 0) {
+                    document.getElementById(`node-${flowSteps[step-1].node}`).classList.remove('active');
+                }
+                if (step < flowSteps.length) {
+                    const current = flowSteps[step];
+                    document.getElementById(`node-${current.node}`).classList.add('active');
+                    addLog(current.log);
+
+                    if (current.nextArrow) {
+                        const arrow = document.getElementById(`arrow-${current.nextArrow}`);
+                        const packet = arrow.querySelector('.sim-packet');
+                        packet.classList.remove('animate');
+                        arrow.classList.add('active');
+                        void packet.offsetWidth; // trigger reflow
+                        packet.classList.add('animate');
+                        
+                        setTimeout(() => {
+                            arrow.classList.remove('active');
+                            step++;
+                            executeStep();
+                        }, 1200);
+                    } else {
+                        setTimeout(() => {
+                            document.getElementById(`node-${current.node}`).classList.remove('active');
+                            simStatus.textContent = 'System Idle';
+                            simStatus.style.color = 'var(--text-secondary)';
+                            simStartBtn.disabled = false;
+                            addLog('Event processing complete. End of flow.');
+                        }, 1500);
+                    }
+                }
+            }
+
+            executeStep();
+        });
+    }
 });

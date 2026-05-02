@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harshit Shukla | Backend & AI Developer</title>
     <meta name="description" content="Portfolio of Harshit Shukla - Backend Engineer, AI Developer, and Microservices Architect.">
+    <meta name="keywords" content="Harshit Shukla, Backend Engineer, AI Developer, Microservices, Python, FastAPI, Kafka">
+    <meta name="author" content="Harshit Shukla">
+    <meta property="og:title" content="Harshit Shukla | AI & Backend Engineer">
+    <meta property="og:description" content="Portfolio of Harshit Shukla - Building scalable distributed systems powered by Generative AI and event-driven architecture.">
+    <meta property="og:type" content="website">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -59,7 +64,7 @@
         <section id="hero" class="hero section">
             <div class="container hero-content">
                 <div class="hero-badge fade-up">
-                    <span class="pulse-dot"></span> Available for new opportunities
+                    <span class="pulse-dot"></span> Open to Work
                 </div>
                 <h1 class="hero-title fade-up" style="animation-delay: 0.1s;">
                     Hi, I'm <span class="gradient-text">Harshit</span><br>
@@ -68,9 +73,14 @@
                 <p class="hero-subtitle fade-up" style="animation-delay: 0.2s;">
                     Building scalable distributed systems powered by Generative AI and event-driven architecture.
                 </p>
+                <div class="recruiter-shortcut fade-up" style="animation-delay: 0.25s;">
+                    <div class="recruiter-info">
+                        <strong>Quick Summary:</strong> Specialized in Python, FastAPI, Microservices & Kafka.
+                    </div>
+                </div>
                 <div class="hero-cta fade-up" style="animation-delay: 0.3s;">
-                    <a href="#projects" class="btn btn-primary">View My Work</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                    <a href="Harshit_Shukla.Resume.pdf" class="btn btn-primary" download><i class="ph ph-download-simple"></i> Download Resume</a>
+                    <a href="#projects" class="btn btn-secondary">View My Work</a>
                 </div>
                 <div class="hero-social fade-up" style="animation-delay: 0.4s;">
                     <a href="https://github.com/harshitshukla200" target="_blank" aria-label="GitHub"><i class="ph ph-github-logo"></i></a>
@@ -93,8 +103,8 @@
                         <p>I have extensive experience integrating Generative AI (LLMs, RAG) into production workflows, utilizing Python, FastAPI, and Microservices. I thrive in event-driven architectures and modern DevOps pipelines involving Docker, Kubernetes, and GCP.</p>
                         <div class="about-stats">
                             <div class="stat-item">
-                                <h3>3+</h3>
-                                <p>Years Coding</p>
+                                <h3>Backend</h3>
+                                <p>& AI Dev</p>
                             </div>
                             <div class="stat-item">
                                 <h3>10+</h3>
@@ -109,8 +119,36 @@
                     <div class="about-image reveal" style="transition-delay: 0.2s;">
                         <div class="image-wrapper">
                             <!-- User Profile Image -->
-                            <img src="PIC.jpeg" alt="Harshit Shukla" class="profile-img">
+                            <img src="PIC.jpeg" alt="Harshit Shukla" class="profile-img" loading="lazy">
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievement Highlights -->
+        <section class="section bg-alt achievement-highlights">
+            <div class="container">
+                <div class="achievements-grid reveal">
+                    <div class="achievement-card">
+                        <i class="ph ph-rocket-launch text-accent"></i>
+                        <h3>20%</h3>
+                        <p>API Response Time Reduced</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="ph ph-shield-check text-accent"></i>
+                        <h3>99.9%</h3>
+                        <p>System Uptime Maintained</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="ph ph-users text-accent"></i>
+                        <h3>200+</h3>
+                        <p>Concurrent Users Handled</p>
+                    </div>
+                    <div class="achievement-card">
+                        <i class="ph ph-code-block text-accent"></i>
+                        <h3>10+</h3>
+                        <p>Microservices Deployed</p>
                     </div>
                 </div>
             </div>
@@ -227,11 +265,11 @@
                 </div>
 
                 <div class="projects-grid">
-                    <!-- Project 1 -->
-                    <div class="project-card reveal" data-category="backend ai fullstack">
-                        <div class="project-image">
-                            <div class="placeholder-img" style="background: linear-gradient(135deg, #4f46e5, #7c3aed);">
-                                <i class="ph ph-clock-counter-clockwise"></i>
+                    <!-- Project 1 (Featured Deep Dive) -->
+                    <div class="project-card featured-project reveal" data-category="backend ai fullstack">
+                        <div class="project-image featured-img">
+                            <div class="placeholder-img" style="background: var(--bg-secondary);">
+                                <i class="ph ph-clock-counter-clockwise" style="color: var(--accent);"></i>
                             </div>
                         </div>
                         <div class="project-content">
@@ -239,11 +277,52 @@
                                 <span>FastAPI</span>
                                 <span>React</span>
                                 <span>Kafka</span>
+                                <span class="highlight-tag">Generative AI</span>
                             </div>
-                            <h3>TemporalAI</h3>
-                            <p>Full-stack event-driven microservices platform. Uses Kafka for real-time streaming, Firebase Firestore for scalable DB, and Dockerized deployment.</p>
+                            <h3>TemporalAI (Featured)</h3>
+                            <p>Full-stack event-driven microservices platform. Implements an intelligent AI chatbot, anomaly reporting, and automated snapshots. Uses Apache Kafka for reliable asynchronous event streaming and Firebase Firestore for real-time unstructured data storage.</p>
+                            <div class="project-achievements">
+                                <ul>
+                                    <li><i class="ph ph-check-circle"></i> Integrated LLM-based anomaly detection</li>
+                                    <li><i class="ph ph-check-circle"></i> Built decoupled microservices via Docker</li>
+                                </ul>
+                            </div>
                             <div class="project-links">
-                                <a href="https://github.com/harshitshukla200/TemporalAI" target="_blank" class="project-link"><i class="ph ph-github-logo"></i> Source Code</a>
+                                <a href="https://github.com/harshitshukla200/TemporalAI" target="_blank" class="btn btn-primary btn-sm"><i class="ph ph-github-logo"></i> View Architecture & Code</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 (AI Portfolio) -->
+                    <div class="project-card reveal" data-category="frontend ai fullstack">
+                        <div class="project-image">
+                            <div class="placeholder-img" style="background: var(--bg-secondary);">
+                                <i class="ph ph-layout" style="color: var(--accent);"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-tags">
+                                <span>JavaScript</span>
+                                <span>CSS3</span>
+                                <span>Gemini AI</span>
+                                <span>DOM Animation</span>
+                            </div>
+                            <h3>AI-Powered Interactive Portfolio</h3>
+                            <p>A modern, responsive portfolio with an integrated AI assistant, system simulator, and dynamic GitHub insights, designed to showcase advanced engineering concepts interactively.</p>
+                            
+                            <div class="project-details" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                                <ul style="list-style: disc; padding-left: 1.2rem; color: var(--text-secondary); font-size: 0.9rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                                    <li>Designed and deployed a responsive portfolio with dark/light theme and glassmorphism UI.</li>
+                                    <li>Integrated a custom AI Assistant using Google Generative AI (Gemini 1.5 Flash) with prompt engineering.</li>
+                                    <li>Built an interactive System Simulator (Kafka Flow) using JavaScript and CSS animations.</li>
+                                    <li>Developed an "Ask My Project" feature for structured explanations of architecture.</li>
+                                    <li>Integrated GitHub API to display live stats, languages, and contributions dynamically.</li>
+                                </ul>
+                            </div>
+
+                            <div class="project-links" style="margin-top: auto; padding-top: 1.5rem; justify-content: space-between; align-items: center;">
+                                <a href="https://github.com/harshitshukla200/harshitshukla.github.io" target="_blank" class="project-link"><i class="ph ph-github-logo"></i> GitHub</a>
+                                <button class="btn btn-outline btn-sm toggle-details-btn" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">View Details</button>
                             </div>
                         </div>
                     </div>
@@ -251,8 +330,8 @@
                     <!-- Project 2 -->
                     <div class="project-card reveal" data-category="ai fullstack">
                         <div class="project-image">
-                            <div class="placeholder-img" style="background: linear-gradient(135deg, #0ea5e9, #2563eb);">
-                                <i class="ph ph-microphone-stage"></i>
+                            <div class="placeholder-img" style="background: var(--bg-secondary);">
+                                <i class="ph ph-microphone-stage" style="color: var(--accent);"></i>
                             </div>
                         </div>
                         <div class="project-content">
@@ -272,8 +351,8 @@
                     <!-- Project 3 -->
                     <div class="project-card reveal" data-category="backend">
                         <div class="project-image">
-                            <div class="placeholder-img" style="background: linear-gradient(135deg, #10b981, #059669);">
-                                <i class="ph ph-currency-circle-dollar"></i>
+                            <div class="placeholder-img" style="background: var(--bg-secondary);">
+                                <i class="ph ph-currency-circle-dollar" style="color: var(--accent);"></i>
                             </div>
                         </div>
                         <div class="project-content">
@@ -292,6 +371,90 @@
                 </div>
             </div>
         </section>
+
+        <!-- System Architecture Simulator -->
+        <section id="architecture" class="section">
+            <div class="container">
+                <h2 class="section-title reveal">How I Build Scalable Systems</h2>
+                <p class="section-subtitle reveal" style="text-align: center; margin-bottom: 3rem; color: var(--text-secondary);">Interactive Event-Driven Architecture (Kafka & FastAPI)</p>
+                <div class="system-simulator reveal">
+                    <div class="sim-controls">
+                        <button id="sim-start-btn" class="btn btn-primary"><i class="ph ph-play"></i> Trigger Event</button>
+                        <span id="sim-status" class="sim-status">System Idle</span>
+                    </div>
+                    <div class="sim-flow">
+                        <div class="sim-node client-node" id="node-client">
+                            <i class="ph ph-desktop"></i>
+                            <span>Frontend</span>
+                        </div>
+                        <div class="sim-arrow" id="arrow-1"><div class="sim-packet"></div></div>
+                        <div class="sim-node api-node" id="node-api">
+                            <i class="ph ph-lightning"></i>
+                            <span>FastAPI Gateway</span>
+                        </div>
+                        <div class="sim-arrow" id="arrow-2"><div class="sim-packet"></div></div>
+                        <div class="sim-node kafka-node" id="node-kafka">
+                            <i class="ph ph-queue"></i>
+                            <span>Apache Kafka</span>
+                        </div>
+                        <div class="sim-arrow" id="arrow-3"><div class="sim-packet"></div></div>
+                        <div class="sim-node worker-node" id="node-worker">
+                            <i class="ph ph-brain"></i>
+                            <span>AI Worker</span>
+                        </div>
+                        <div class="sim-arrow" id="arrow-4"><div class="sim-packet"></div></div>
+                        <div class="sim-node db-node" id="node-db">
+                            <i class="ph ph-database"></i>
+                            <span>Firebase DB</span>
+                        </div>
+                    </div>
+                    <div class="sim-logs">
+                        <h4>System Execution Logs</h4>
+                        <div id="sim-log-output" class="log-output">
+                            <div><span class="log-time">[SYS]</span> System initialized. Waiting for events...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Engineering Decision Log -->
+        <section id="decision-log" class="section bg-alt">
+            <div class="container">
+                <h2 class="section-title reveal">Engineering Decision Log</h2>
+                <p class="section-subtitle reveal" style="text-align: center; margin-bottom: 3rem; color: var(--text-secondary);">Real-world architectural trade-offs and choices</p>
+                <div class="decision-grid">
+                    <div class="decision-card reveal">
+                        <div class="decision-header">
+                            <span class="decision-tag">Architecture</span>
+                            <h3>Why Apache Kafka?</h3>
+                        </div>
+                        <p><strong>Context:</strong> Needed to handle high-throughput real-time events for TemporalAI.</p>
+                        <p><strong>Decision:</strong> Chose Kafka over RabbitMQ/Redis PubSub.</p>
+                        <p><strong>Why:</strong> Kafka provides superior durability, event replay capabilities, and high throughput needed for real-time AI anomaly streams. The trade-off was increased operational complexity, mitigated via Docker Compose.</p>
+                    </div>
+                    <div class="decision-card reveal" style="transition-delay: 0.1s;">
+                        <div class="decision-header">
+                            <span class="decision-tag">Backend</span>
+                            <h3>FastAPI vs Django</h3>
+                        </div>
+                        <p><strong>Context:</strong> Building APIs for AI-heavy microservices.</p>
+                        <p><strong>Decision:</strong> Migrated from Django to FastAPI for core AI services.</p>
+                        <p><strong>Why:</strong> FastAPI's native async support perfectly complements IO-bound LLM API calls and Kafka interactions. It reduced API response times by 20% compared to synchronous Django views.</p>
+                    </div>
+                    <div class="decision-card reveal" style="transition-delay: 0.2s;">
+                        <div class="decision-header">
+                            <span class="decision-tag">Database</span>
+                            <h3>NoSQL (Firebase) vs SQL</h3>
+                        </div>
+                        <p><strong>Context:</strong> Storing dynamic chat histories and real-time anomaly alerts.</p>
+                        <p><strong>Decision:</strong> Used Firebase Firestore.</p>
+                        <p><strong>Why:</strong> Provided out-of-the-box real-time listeners for the frontend to update UI instantly without complex WebSockets, while handling unstructured JSON logs effectively.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- Certifications Section -->
         <section id="certifications" class="section">
@@ -329,20 +492,26 @@
                         <p class="contact-desc">Whether you have an opportunity or just want to say hi, my inbox is always open. I'll try my best to get back to you!</p>
                         
                         <div class="contact-details">
-                            <a href="mailto:harshitshukla1124@gmail.com" class="contact-item">
+                            <div class="contact-item">
                                 <div class="contact-icon"><i class="ph ph-envelope-simple"></i></div>
                                 <div>
                                     <h5>Email</h5>
-                                    <span>harshitshukla1124@gmail.com</span>
+                                    <div style="display:flex; align-items:center; gap:0.5rem;">
+                                        <span id="contact-email-text">harshitshukla1124@gmail.com</span>
+                                        <button class="copy-btn" id="copy-email-btn" aria-label="Copy Email"><i class="ph ph-copy"></i></button>
+                                    </div>
                                 </div>
-                            </a>
-                            <a href="tel:+919670534311" class="contact-item">
+                            </div>
+                            <div class="contact-item">
                                 <div class="contact-icon"><i class="ph ph-phone"></i></div>
                                 <div>
                                     <h5>Phone</h5>
-                                    <span>+91 9670534311</span>
+                                    <div style="display:flex; align-items:center; gap:0.5rem;">
+                                        <span id="contact-phone-text">+91 9670534311</span>
+                                        <button class="copy-btn" id="copy-phone-btn" aria-label="Copy Phone"><i class="ph ph-copy"></i></button>
+                                    </div>
                                 </div>
-                            </a>
+                            </div>
                             <div class="contact-item">
                                 <div class="contact-icon"><i class="ph ph-map-pin"></i></div>
                                 <div>
@@ -353,19 +522,23 @@
                         </div>
                     </div>
                     
-                    <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+                    <form action="https://formsubmit.co/harshitshukla1124@gmail.com" method="POST" class="contact-form reveal">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" required placeholder="John Doe">
+                            <input type="text" id="name" name="name" required placeholder="John Doe">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" required placeholder="john@example.com">
+                            <input type="email" id="email" name="email" required placeholder="john@example.com">
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" rows="5" required placeholder="Hello Harshit..."></textarea>
+                            <textarea id="message" name="message" rows="5" required placeholder="Hello Harshit..."></textarea>
                         </div>
+                        <!-- Optional FormSubmit settings -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="New Message from Portfolio!">
+                        
                         <button type="submit" class="btn btn-primary w-full">Send Message</button>
                     </form>
                 </div>
@@ -399,7 +572,13 @@
             </div>
             <div class="chat-messages" id="chat-messages">
                 <div class="message bot-message">
-                    Hi! I'm Harshit's AI assistant. How can I help you learn more about his background, skills, or projects?
+                    Hi! I'm Harshit's AI assistant. Try the new <strong>"Ask My Project"</strong> feature to dive deep into my architecture, or use the quick actions below!
+                </div>
+                <div class="chat-quick-actions" id="chat-quick-actions">
+                    <button class="quick-action-btn special-action-btn" data-query="Ask My Project: Tell me about TemporalAI's architecture and challenges solved."><i class="ph ph-sparkle"></i> Ask My Project</button>
+                    <button class="quick-action-btn" data-query="What are Harshit's top skills?">Skills</button>
+                    <button class="quick-action-btn" data-query="Where does he work?">Experience</button>
+                    <button class="quick-action-btn" data-query="How to contact him?">Contact</button>
                 </div>
             </div>
             <div class="chat-input-area">
